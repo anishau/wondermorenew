@@ -1,18 +1,18 @@
 const cosmicWonders = [
   {
-    title: "Quantum Entanglement",
-    description: "Where particles remain connected regardless of distance, dancing in perfect synchronicity across the cosmos.",
-    gradient: "linear-gradient(45deg, #00f2fe, #4facfe)"
+    title: "Methods for Wonder",
+    description: "Notice the light where you are right now. What shapes it? What causes the sun to be translated in this way? Why do the shadows look just so? Which parts of this process remain beyond the edge of your knowledge?",
+    gradient: "linear-gradient(45deg, #eee5d8, #faf7f2)"
   },
   {
-    title: "Dark Matter",
-    description: "The invisible force that binds galaxies together, making up 85% of the universe's mass.",
-    gradient: "linear-gradient(45deg, #434343, #000000)"
+    title: "Practicing Awe",
+    description: "When you reach the edge of your understanding, pause there. Notice the vastness of what you don't know. Let yourself feel small in the face of this unknowing. This is where wonder transforms into awe.",
+    gradient: "linear-gradient(45deg, #f5efe7, #eee5d8)"
   },
   {
-    title: "Nebulae",
-    description: "Cosmic nurseries where stars are born, painting the darkness with brilliant colors.",
-    gradient: "linear-gradient(45deg, #7303c0, #ec38bc, #fdeff9)"
+    title: "Daily Mysteries",
+    description: "Even the most mundane moments contain infinite depth. A stranger's laugh, the pattern of cracks in the sidewalk, the way sunlight bends through your window - each is an invitation to wonder.",
+    gradient: "linear-gradient(45deg, #eee5d8, #faf7f2)"
   }
 ];
 
