@@ -36,7 +36,7 @@ body {
 
 .main {
   min-height: 100vh;
-  padding: 4rem 2rem;
+  padding-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -239,5 +239,120 @@ body {
   .divider {
     letter-spacing: 0.5rem;
     margin: 3rem 0;
+  }
+}
+
+/* Add these styles */
+.related-essays {
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.related-title {
+  font-size: 1.8rem;
+  color: rgba(44, 36, 32, 0.8);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.essay-link {
+  display: inline-block;
+  font-size: 1.4rem;
+  color: rgba(44, 36, 32, 0.8);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(44, 36, 32, 0.2);
+  transition: all 0.3s ease;
+  padding-bottom: 2px;
+}
+
+.essay-link:hover {
+  color: rgba(44, 36, 32, 1);
+  border-bottom-color: rgba(44, 36, 32, 0.6);
+}
+
+/* Add at the top of the file, after the reset styles */
+.site-header {
+  padding: 1.5rem 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(44, 36, 32, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.nav-menu {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-button {
+  background: none;
+  border: none;
+  font-family: 'EB Garamond', serif;
+  font-size: 1.2rem;
+  color: rgba(44, 36, 32, 0.8);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.dropdown-button:hover {
+  color: rgba(44, 36, 32, 1);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(255, 255, 255, 0.98);
+  min-width: 200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(44, 36, 32, 0.1);
+  border-radius: 2px;
+  padding: 0.5rem 0;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content li {
+  list-style: none;
+}
+
+.dropdown-content .nav-link {
+  display: block;
+  padding: 0.8rem 1.2rem;
+  text-decoration: none;
+  color: rgba(44, 36, 32, 0.8);
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.dropdown-content .nav-link:hover {
+  background: rgba(44, 36, 32, 0.05);
+  color: rgba(44, 36, 32, 1);
+}
+
+/* Update responsive styles */
+@media (max-width: 768px) {
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    display: none;
+  }
+
+  .dropdown.active .dropdown-content {
+    display: block;
   }
 } 

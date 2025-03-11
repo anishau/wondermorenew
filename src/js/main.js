@@ -35,4 +35,18 @@ function previousWonder() {
 }
 
 // Initialize first wonder
-document.addEventListener('DOMContentLoaded', updateWonder); 
+document.addEventListener('DOMContentLoaded', updateWonder);
+
+// Add this at the top of the file
+document.addEventListener('DOMContentLoaded', function() {
+  // Mobile dropdown toggle
+  const dropdownButton = document.querySelector('.dropdown-button');
+  const dropdown = document.querySelector('.dropdown');
+  
+  if (window.innerWidth <= 768) {
+    dropdownButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      dropdown.classList.toggle('active');
+    });
+  }
+}); 
