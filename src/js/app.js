@@ -1,23 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  if (!window.SUPABASE_CONFIG) {
-    console.error('Supabase config not loaded');
-    return;
-  }
-
-  const supabaseUrl = window.SUPABASE_CONFIG.url;
-  const supabaseKey = window.SUPABASE_CONFIG.key;
-
-  console.log('Supabase Config:', {
-    url: supabaseUrl,
-    keyLength: supabaseKey?.length || 0
-  });
-
-  if (!supabaseUrl || !supabaseKey) {
-    console.error('Missing Supabase configuration')
-    return
-  }
-
-  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
+  const supabase = window.supabaseClient;
+  if (!supabase) return;
 
   async function updateNavigation() {
     const { data: { session }, error } = await supabase.auth.getSession()
@@ -36,95 +19,24 @@ document.addEventListener('DOMContentLoaded', () => {
       })
     } else {
       authLinks.innerHTML = `<a href="/auth" class="nav-link">Sign In</a>`
-      
-      // Redirect if on journal page
-      if (window.location.pathname === '/journal') {
-        window.location.href = '/auth'
-      }
     }
   }
 
   // Update navigation when auth state changes
   supabase.auth.onAuthStateChange((event, session) => {
+    console.log('Auth state changed:', event, session);
     updateNavigation()
+    
+    // Handle successful sign in
+    if (event === 'SIGNED_IN' && window.location.pathname === '/auth') {
+      window.location.href = '/journal'
+    }
   })
 
   // Initial navigation update
   updateNavigation()
 
   // Auth functions
-  async function checkCurrentSession() {
-    const { data: { session }, error } = await supabase.auth.getSession()
-    console.log('Current session:', session)
-    if (session) {
-      window.location.href = '/journal'
-    }
-  }
-
-  // ... rest of your existing auth and journal functions ...
-
-  // Initialize forms and check auth status
-  const loginForm = document.querySelector('#loginForm')
-  const signupForm = document.querySelector('#signupForm')
-  const wonderForm = document.getElementById('wonderForm')
-
-  console.log('Forms found:', {
-    loginForm: !!loginForm,
-    signupForm: !!signupForm
-  })
-
-  if (loginForm) {
-    console.log('Login form found')
-    loginForm.addEventListener('submit', handleLogin)
-  }
-  if (signupForm) {
-    console.log('Signup form found')
-    signupForm.addEventListener('submit', handleSignup)
-  }
-  if (wonderForm) {
-    wonderForm.addEventListener('submit', handleWonderSubmit)
-    loadEntries()
-  }
-
-  // Check auth status
-  const isAuthPage = window.location.pathname === '/auth'
-  if (isAuthPage) {
-    checkCurrentSession()
-  } else if (window.location.pathname === '/journal') {
-    checkAuth()
-  }
-
-  async function handleSignup(event) {
-    event.preventDefault()
-    console.log('Signup attempt...')
-    
-    const form = event.target
-    const email = form.querySelector('input[type="email"]').value
-    const password = form.querySelector('input[type="password"]').value
-    
-    console.log('Attempting signup with:', { email })
-
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password
-      })
-
-      console.log('Signup response:', { data, error })
-
-      if (error) {
-        console.error('Signup error:', error)
-        showError(error.message)
-      } else {
-        console.log('Signup successful:', data)
-        showSuccess('Check your email to confirm your account')
-      }
-    } catch (err) {
-      console.error('Unexpected error:', err)
-      showError('An unexpected error occurred')
-    }
-  }
-
   async function handleLogin(event) {
     event.preventDefault()
     console.log('Login attempt...')
@@ -133,15 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const email = form.querySelector('input[type="email"]').value
     const password = form.querySelector('input[type="password"]').value
     
-    console.log('Attempting login with:', { email })
-
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password
       })
-
-      console.log('Login response:', { data, error })
 
       if (error) {
         console.error('Login error:', error)
@@ -149,6 +57,30 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         console.log('Login successful:', data)
         window.location.href = '/journal'
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err)
+      showError('An unexpected error occurred')
+    }
+  }
+
+  async function handleSignup(event) {
+    event.preventDefault()
+    
+    const form = event.target
+    const email = form.querySelector('input[type="email"]').value
+    const password = form.querySelector('input[type="password"]').value
+    
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password
+      })
+
+      if (error) {
+        showError(error.message)
+      } else {
+        showSuccess('Check your email to confirm your account')
       }
     } catch (err) {
       console.error('Unexpected error:', err)
@@ -170,5 +102,16 @@ document.addEventListener('DOMContentLoaded', () => {
     successDiv.textContent = message
     document.querySelector('.auth-container').prepend(successDiv)
     setTimeout(() => successDiv.remove(), 5000)
+  }
+
+  // Initialize forms
+  const loginForm = document.querySelector('#loginForm')
+  const signupForm = document.querySelector('#signupForm')
+
+  if (loginForm) {
+    loginForm.addEventListener('submit', handleLogin)
+  }
+  if (signupForm) {
+    signupForm.addEventListener('submit', handleSignup)
   }
 }) 

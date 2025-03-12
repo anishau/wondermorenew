@@ -12,7 +12,11 @@
     {{ content | safe }}
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script src="/js/config.js"></script>
+    <script src="/js/supabase.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/main.js"></script>
+    {% if page.url == '/journal/' %}
+    <script src="/js/journal.js"></script>
+    {% endif %}
 </body>
 </html> 

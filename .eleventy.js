@@ -13,9 +13,9 @@ module.exports = function(eleventyConfig) {
       fs.mkdirSync('_site/js', { recursive: true });
     }
 
-    // Write the config file with no template literals
+    // Write the config file with full URL
     const config = `window.SUPABASE_CONFIG = {
-      url: 'https://${process.env.SUPABASE_URL}',
+      url: '${process.env.SUPABASE_URL}',  // URL should already include https://
       key: '${process.env.SUPABASE_ANON_KEY}'
     };`;
 
