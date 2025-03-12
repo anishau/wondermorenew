@@ -13,7 +13,13 @@ function createSupabaseClient() {
     return null;
   }
 
-  return window.supabase.createClient(supabaseUrl, supabaseKey);
+  return window.supabase.createClient(supabaseUrl, supabaseKey, {
+    auth: {
+      persistSession: false, // Don't persist session in localStorage
+      autoRefreshToken: false,
+      detectSessionInUrl: true
+    }
+  });
 }
 
 window.supabaseClient = createSupabaseClient(); 
