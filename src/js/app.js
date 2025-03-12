@@ -11,12 +11,24 @@ document.addEventListener('DOMContentLoaded', () => {
         <a href="/journal" class="nav-link">Journal</a>
         <a href="#" class="nav-link" id="signOutLink">Sign Out</a>
       `
-      // Add sign out handler
-      document.getElementById('signOutLink').addEventListener('click', async (e) => {
-        e.preventDefault()
-        await supabase.auth.signOut()
-        window.location.href = '/'
-      })
+      // Add sign out handler immediately after creating the link
+      const signOutLink = document.getElementById('signOutLink');
+      if (signOutLink) {
+        signOutLink.addEventListener('click', async (e) => {
+          e.preventDefault();
+          try {
+            const { error } = await supabase.auth.signOut();
+            if (error) {
+              console.error('Error signing out:', error);
+            } else {
+              console.log('Successfully signed out');
+              window.location.href = '/';
+            }
+          } catch (err) {
+            console.error('Unexpected error during sign out:', err);
+          }
+        });
+      }
     } else {
       authLinks.innerHTML = `<a href="/auth" class="nav-link">Sign In</a>`
     }
@@ -25,16 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Update navigation when auth state changes
   supabase.auth.onAuthStateChange((event, session) => {
     console.log('Auth state changed:', event, session);
-    updateNavigation()
+    updateNavigation();
     
-    // Handle successful sign in
-    if (event === 'SIGNED_IN' && window.location.pathname === '/auth') {
-      window.location.href = '/journal'
+    if (event === 'SIGNED_OUT') {
+      window.location.href = '/';
     }
-  })
+  });
 
   // Initial navigation update
-  updateNavigation()
+  updateNavigation();
 
   // Auth functions
   async function handleLogin(event) {
