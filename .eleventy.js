@@ -8,22 +8,18 @@ module.exports = function(eleventyConfig) {
 
   // Generate config file
   eleventyConfig.on('beforeBuild', () => {
-    console.log('Building with environment variables:', {
-      hasUrl: !!process.env.SUPABASE_URL,
-      hasKey: !!process.env.SUPABASE_ANON_KEY,
-      urlPreview: process.env.SUPABASE_URL ? process.env.SUPABASE_URL.substring(0, 10) : 'missing'
-    });
-
-    const configTemplate = fs.readFileSync('src/js/config.js', 'utf8');
-    const config = configTemplate
-      .replace('{{ SUPABASE_URL }}', process.env.SUPABASE_URL || '')
-      .replace('{{ SUPABASE_ANON_KEY }}', process.env.SUPABASE_ANON_KEY || '');
-    
-    // Ensure _site/js directory exists
+    // Create _site/js directory if it doesn't exist
     if (!fs.existsSync('_site/js')) {
       fs.mkdirSync('_site/js', { recursive: true });
     }
-    
+
+    // Write the config file with no template literals
+    const config = `window.SUPABASE_CONFIG = {
+      url: 'https://${process.env.SUPABASE_URL}',
+      key: '${process.env.SUPABASE_ANON_KEY}'
+    };`;
+
+    // Write config file directly to _site/js
     fs.writeFileSync('_site/js/config.js', config);
   });
 

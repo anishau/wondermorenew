@@ -225,7 +225,7 @@ body {
   }
 }
 
-<<<<<<< HEAD
+/* Header and Navigation */
 .header {
   padding: 1.5rem 2rem;
   background: rgba(255, 255, 255, 0.95);
@@ -246,218 +246,63 @@ body {
   justify-content: flex-end;
 }
 
-.nav-link {
-  text-decoration: none;
-  color: rgba(44, 36, 32, 0.8);
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: rgba(44, 36, 32, 0.8);
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover {
-  color: rgba(44, 36, 32, 1);
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
-
-#signOutLink {
-  cursor: pointer;
-}
-
-#authLinks {
-  display: flex;
-  gap: 2rem;
-}
-
-/* Auth and Journal Styles */
-.auth-container, .journal-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.auth-title, .journal-title {
-  font-size: 2.5rem;
-  color: rgba(44, 36, 32, 0.95);
-  margin-bottom: 2rem;
-  font-weight: 500;
-  text-align: center;
-  letter-spacing: 0.01em;
-}
-
-.auth-form, .journal-form {
-  background: #f5f2eb;
-  padding: 2.5rem;
-  border: 1px solid rgba(44, 36, 32, 0.15);
-  box-shadow: 
-    0 4px 12px rgba(44, 36, 32, 0.03),
-    0 1px 3px rgba(44, 36, 32, 0.05);
-  margin-bottom: 2rem;
-  transition: all 0.3s ease;
-}
-
-.auth-form:hover, .journal-form:hover {
-  transform: translateY(-2px);
-  box-shadow: 
-    0 6px 16px rgba(44, 36, 32, 0.06),
-    0 1px 3px rgba(44, 36, 32, 0.1);
-}
-
-.auth-form input, .journal-form textarea {
-  width: 100%;
-  padding: 0.8rem;
-  margin-bottom: 1.5rem;
-  border: 1px solid rgba(44, 36, 32, 0.2);
-  background: rgba(255, 255, 255, 0.5);
-  font-family: 'EB Garamond', serif;
-  font-size: 1.1rem;
-  color: rgba(44, 36, 32, 0.9);
-  transition: all 0.3s ease;
-}
-
-.auth-form input:focus, .journal-form textarea:focus {
-  outline: none;
-  border-color: rgba(44, 36, 32, 0.4);
-  background: rgba(255, 255, 255, 0.8);
-}
-
-.journal-form textarea {
-  min-height: 150px;
-  resize: vertical;
-  line-height: 1.6;
-}
-
-.auth-form button, .journal-form button {
-  width: 100%;
-  padding: 1rem;
-=======
-/* Add these styles */
-.related-essays {
-  margin: 4rem 0;
-  text-align: center;
-}
-
-.related-title {
-  font-size: 1.8rem;
-  color: rgba(44, 36, 32, 0.8);
-  margin-bottom: 1.5rem;
-  font-weight: 500;
-}
-
-.essay-link {
-  display: inline-block;
-  font-size: 1.4rem;
-  color: rgba(44, 36, 32, 0.8);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(44, 36, 32, 0.2);
-  transition: all 0.3s ease;
-  padding-bottom: 2px;
-}
-
-.essay-link:hover {
-  color: rgba(44, 36, 32, 1);
-  border-bottom-color: rgba(44, 36, 32, 0.6);
-}
-
-/* Add at the top of the file, after the reset styles */
-.site-header {
-  padding: 1.5rem 2rem;
-  background: rgba(255, 255, 255, 0.95);
-  border-bottom: 1px solid rgba(44, 36, 32, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(10px);
-}
-
-.nav-menu {
-  max-width: 900px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-}
-
+/* Dropdown styles */
 .dropdown {
   position: relative;
   display: inline-block;
-}
-
-.dropdown-button {
-  background: none;
-  border: none;
-  font-family: 'EB Garamond', serif;
-  font-size: 1.2rem;
-  color: rgba(44, 36, 32, 0.8);
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  transition: all 0.3s ease;
-}
-
-.dropdown-button:hover {
-  color: rgba(44, 36, 32, 1);
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
   min-width: 200px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 
+    0 4px 12px rgba(44, 36, 32, 0.03),
+    0 1px 3px rgba(44, 36, 32, 0.05);
   border: 1px solid rgba(44, 36, 32, 0.1);
   border-radius: 2px;
   padding: 0.5rem 0;
-  z-index: 1;
+  z-index: 101;
+  opacity: 0;
+  transition: all 0.3s ease;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
+  opacity: 1;
 }
 
-.dropdown-content li {
-  list-style: none;
-}
-
-.dropdown-content .nav-link {
+.dropdown-link {
   display: block;
-  padding: 0.8rem 1.2rem;
-  text-decoration: none;
+  padding: 0.8rem 1.5rem;
   color: rgba(44, 36, 32, 0.8);
+  text-decoration: none;
   font-size: 1.1rem;
   transition: all 0.3s ease;
+  text-align: center;
 }
 
-.dropdown-content .nav-link:hover {
-  background: rgba(44, 36, 32, 0.05);
+.dropdown-link:hover {
+  background: rgba(44, 36, 32, 0.03);
   color: rgba(44, 36, 32, 1);
 }
 
-/* Update responsive styles */
+/* Mobile responsive dropdown */
 @media (max-width: 768px) {
   .dropdown-content {
-    position: static;
-    box-shadow: none;
-    border: none;
-    background: transparent;
-    display: none;
-  }
-
-  .dropdown.active .dropdown-content {
-    display: block;
+    position: fixed;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    border-left: none;
+    border-right: none;
   }
 }
 
@@ -545,25 +390,18 @@ body {
 
 .wonder-form button {
   padding: 1rem 2rem;
->>>>>>> ffd7b7ddd6f617682a30b5ff562feac62afca425
   background: transparent;
   border: 1px solid rgba(44, 36, 32, 0.2);
   color: rgba(44, 36, 32, 0.8);
   font-family: 'EB Garamond', serif;
-<<<<<<< HEAD
-  font-size: 1.2rem;
-=======
   font-size: 1.1rem;
->>>>>>> ffd7b7ddd6f617682a30b5ff562feac62afca425
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-<<<<<<< HEAD
-.auth-form button:hover, .journal-form button:hover {
+.wonder-form button:hover {
   border-color: rgba(44, 36, 32, 0.4);
   color: rgba(44, 36, 32, 0.95);
-  background: rgba(44, 36, 32, 0.03);
 }
 
 .auth-error, .auth-success {
@@ -572,26 +410,6 @@ body {
   text-align: center;
   font-size: 1.1rem;
   border-radius: 2px;
-=======
-.wonder-form button:hover {
-  border-color: rgba(44, 36, 32, 0.4);
-  color: rgba(44, 36, 32, 0.95);
-}
-
-.journal-entries {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.auth-error,
-.auth-success {
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 2px;
-  text-align: center;
-  font-size: 1.1rem;
->>>>>>> ffd7b7ddd6f617682a30b5ff562feac62afca425
   animation: fadeIn 0.3s ease-out;
 }
 
@@ -607,20 +425,6 @@ body {
   border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
-<<<<<<< HEAD
-.wonder-entries {
-  margin-top: 3rem;
-}
-
-.wonder-entry {
-  background: #f5f2eb;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(44, 36, 32, 0.15);
-  box-shadow: 
-    0 4px 12px rgba(44, 36, 32, 0.03),
-    0 1px 3px rgba(44, 36, 32, 0.05);
-=======
 .auth-link {
   margin-left: auto;
   text-decoration: none;
@@ -655,19 +459,12 @@ body {
   background: rgba(255, 255, 255, 0.8);
   padding: 2rem;
   border: 1px solid rgba(44, 36, 32, 0.1);
->>>>>>> ffd7b7ddd6f617682a30b5ff562feac62afca425
   transition: all 0.3s ease;
 }
 
 .wonder-entry:hover {
   transform: translateY(-2px);
-<<<<<<< HEAD
-  box-shadow: 
-    0 6px 16px rgba(44, 36, 32, 0.06),
-    0 1px 3px rgba(44, 36, 32, 0.1);
-=======
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
->>>>>>> ffd7b7ddd6f617682a30b5ff562feac62afca425
 }
 
 .entry-content {
@@ -677,91 +474,12 @@ body {
   margin-bottom: 1rem;
 }
 
-<<<<<<< HEAD
-.entry-date {
-=======
 .entry-footer {
->>>>>>> ffd7b7ddd6f617682a30b5ff562feac62afca425
   font-style: italic;
   color: rgba(44, 36, 32, 0.6);
   font-size: 0.9rem;
 }
 
-<<<<<<< HEAD
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .auth-container, .journal-container {
-    padding: 1rem;
-  }
-
-  .auth-title, .journal-title {
-    font-size: 2rem;
-  }
-
-  .auth-form, .journal-form {
-    padding: 1.5rem;
-  }
-}
-
-/* Dropdown styles */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(10px);
-  min-width: 200px;
-  box-shadow: 
-    0 4px 12px rgba(44, 36, 32, 0.03),
-    0 1px 3px rgba(44, 36, 32, 0.05);
-  border: 1px solid rgba(44, 36, 32, 0.1);
-  border-radius: 2px;
-  padding: 0.5rem 0;
-  z-index: 101;
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-  opacity: 1;
-}
-
-.dropdown-link {
-  display: block;
-  padding: 0.8rem 1.5rem;
-  color: rgba(44, 36, 32, 0.8);
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  text-align: center;
-}
-
-.dropdown-link:hover {
-  background: rgba(44, 36, 32, 0.03);
-  color: rgba(44, 36, 32, 1);
-}
-
-/* Mobile responsive dropdown */
-@media (max-width: 768px) {
-  .dropdown-content {
-    position: fixed;
-    top: 4rem;
-    left: 0;
-    right: 0;
-    transform: none;
-    width: 100%;
-    border-left: none;
-    border-right: none;
-  }
-=======
 .form-footer {
   display: flex;
   justify-content: flex-end;
@@ -806,5 +524,90 @@ body {
   border-color: rgba(44, 36, 32, 0.4);
   color: rgba(44, 36, 32, 0.95);
   background: rgba(44, 36, 32, 0.05);
->>>>>>> ffd7b7ddd6f617682a30b5ff562feac62afca425
+}
+
+.related-essays {
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.related-title {
+  font-size: 1.8rem;
+  color: rgba(44, 36, 32, 0.8);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.essay-link {
+  display: inline-block;
+  font-size: 1.4rem;
+  color: rgba(44, 36, 32, 0.8);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(44, 36, 32, 0.2);
+  transition: all 0.3s ease;
+  padding-bottom: 2px;
+}
+
+.essay-link:hover {
+  color: rgba(44, 36, 32, 1);
+  border-bottom-color: rgba(44, 36, 32, 0.6);
+}
+
+/* Essay page specific styles */
+.essay-page {
+  padding-top: 6rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.essay-title {
+  font-size: 3.5rem;
+  text-align: center;
+  font-weight: 500;
+  color: rgba(44, 36, 32, 0.95);
+  margin-bottom: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.essay-content {
+  padding: 0 2rem;
+}
+
+.essay-text {
+  font-size: 1.4rem;
+  line-height: 1.8;
+  color: rgba(44, 36, 32, 0.95);
+  margin-bottom: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.essay-text:first-of-type::first-letter {
+  initial-letter: 3;
+  -webkit-initial-letter: 3;
+  color: rgba(44, 36, 32, 0.9);
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .essay-page {
+    padding-top: 5rem;
+  }
+
+  .essay-title {
+    font-size: 2.5rem;
+    padding: 0 1rem;
+  }
+
+  .essay-content {
+    padding: 0 1rem;
+  }
+
+  .essay-text {
+    font-size: 1.2rem;
+    line-height: 1.7;
+  }
 } 
