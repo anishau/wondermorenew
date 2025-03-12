@@ -1,0 +1,28 @@
+---
+layout: base.njk
+---
+<div class="container">
+  <main class="main">
+    <h1 class="title">Your Wonder Journal</h1>
+
+    <div class="journal-container">
+      <form class="wonder-form" id="wonderForm">
+        <textarea 
+          name="wonderEntry" 
+          placeholder="Describe a moment that filled you with wonder... What questions arose? What remained beautifully unknowable?" 
+          required
+        ></textarea>
+        <div class="form-footer">
+          <button type="submit">Record This Moment</button>
+        </div>
+      </form>
+
+      <div class="entries-container">
+        <h2 class="entries-title">Your Past Moments of Wonder</h2>
+        <div id="wonderEntries" class="wonder-entries">
+          <!-- Entries will be populated here -->
+        </div>
+      </div>
+    </div>
+  </main>
+</div> 
