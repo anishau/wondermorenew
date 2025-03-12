@@ -15,9 +15,10 @@ function createSupabaseClient() {
 
   return window.supabase.createClient(supabaseUrl, supabaseKey, {
     auth: {
-      persistSession: false, // Don't persist session in localStorage
-      autoRefreshToken: false,
-      detectSessionInUrl: true
+      persistSession: true, // Allow session persistence
+      autoRefreshToken: true,
+      detectSessionInUrl: true,
+      storage: window.localStorage // Use localStorage for session
     }
   });
 }
