@@ -2,6 +2,15 @@
 document.addEventListener('DOMContentLoaded', () => {
   const supabaseUrl = window.SUPABASE_CONFIG.url
   const supabaseKey = window.SUPABASE_CONFIG.key
+
+  console.log('Supabase URL:', supabaseUrl) // For debugging
+
+  // Validate URL format
+  if (!supabaseUrl.startsWith('https://')) {
+    console.error('Invalid Supabase URL format:', supabaseUrl)
+    return
+  }
+
   const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
 
   // Auth functions
