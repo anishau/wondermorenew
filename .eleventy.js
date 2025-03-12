@@ -8,18 +8,31 @@ module.exports = function(eleventyConfig) {
 
   // Generate config file
   eleventyConfig.on('beforeBuild', () => {
-    // Create _site/js directory if it doesn't exist
     if (!fs.existsSync('_site/js')) {
       fs.mkdirSync('_site/js', { recursive: true });
     }
 
-    // Write the config file with full URL
-    const config = `window.SUPABASE_CONFIG = {
-      url: '${process.env.SUPABASE_URL}',  // URL should already include https://
-      key: '${process.env.SUPABASE_ANON_KEY}'
-    };`;
+    // Log the environment variables (for debugging)
+    console.log('Environment variables:', {
+      url: process.env.SUPABASE_URL,
+      keyLength: process.env.SUPABASE_ANON_KEY?.length || 0
+    });
 
-    // Write config file directly to _site/js
+    // Ensure URL is properly formatted
+    const supabaseUrl = process.env.SUPABASE_URL;
+    if (!supabaseUrl) {
+      throw new Error('SUPABASE_URL is not defined');
+    }
+
+    const config = `window.SUPABASE_CONFIG = {
+      url: '${supabaseUrl}',
+      key: '${process.env.SUPABASE_ANON_KEY}'
+    };
+    console.log('Supabase config loaded:', {
+      url: window.SUPABASE_CONFIG.url,
+      keyLength: window.SUPABASE_CONFIG.key?.length
+    });`;
+
     fs.writeFileSync('_site/js/config.js', config);
   });
 
