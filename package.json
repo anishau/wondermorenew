@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@11ty/eleventy": "^2.0.0"
+    "@11ty/eleventy": "^2.0.0",
+    "@supabase/supabase-js": "^2.49.1",
+    "dotenv": "^16.4.7"
   }
-} 
+}

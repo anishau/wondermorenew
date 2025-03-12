@@ -284,6 +284,8 @@ body {
 .nav-menu {
   max-width: 900px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
 }
 
 .dropdown {
@@ -355,4 +357,231 @@ body {
   .dropdown.active .dropdown-content {
     display: block;
   }
+}
+
+.auth-container {
+  max-width: 400px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+.auth-form {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border: 1px solid rgba(44, 36, 32, 0.1);
+  margin-bottom: 2rem;
+}
+
+.auth-form h2 {
+  font-size: 1.8rem;
+  color: rgba(44, 36, 32, 0.9);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: normal;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(44, 36, 32, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+  font-family: 'EB Garamond', serif;
+  font-size: 1.1rem;
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(44, 36, 32, 0.8);
+  color: #fff;
+  border: none;
+  font-family: 'EB Garamond', serif;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.auth-form button:hover {
+  background: rgba(44, 36, 32, 0.9);
+}
+
+.auth-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.auth-divider {
+  text-align: center;
+  margin: 2rem 0;
+  color: rgba(44, 36, 32, 0.6);
+  font-style: italic;
+}
+
+.journal-container {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+.wonder-form {
+  margin-bottom: 4rem;
+}
+
+.wonder-form textarea {
+  width: 100%;
+  min-height: 200px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(44, 36, 32, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+  font-family: 'EB Garamond', serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.wonder-form button {
+  padding: 1rem 2rem;
+  background: transparent;
+  border: 1px solid rgba(44, 36, 32, 0.2);
+  color: rgba(44, 36, 32, 0.8);
+  font-family: 'EB Garamond', serif;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.wonder-form button:hover {
+  border-color: rgba(44, 36, 32, 0.4);
+  color: rgba(44, 36, 32, 0.95);
+}
+
+.journal-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.auth-error,
+.auth-success {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 1.1rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.auth-error {
+  background: rgba(220, 38, 38, 0.1);
+  color: rgba(220, 38, 38, 0.9);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.auth-success {
+  background: rgba(16, 185, 129, 0.1);
+  color: rgba(16, 185, 129, 0.9);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.auth-link {
+  margin-left: auto;
+  text-decoration: none;
+  color: rgba(44, 36, 32, 0.8);
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.auth-link:hover {
+  color: rgba(44, 36, 32, 1);
+}
+
+.entries-container {
+  margin-top: 4rem;
+}
+
+.entries-title {
+  font-size: 2rem;
+  color: rgba(44, 36, 32, 0.9);
+  margin-bottom: 2rem;
+  font-weight: normal;
+  text-align: center;
+}
+
+.wonder-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.wonder-entry {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border: 1px solid rgba(44, 36, 32, 0.1);
+  transition: all 0.3s ease;
+}
+
+.wonder-entry:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.entry-content {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: rgba(44, 36, 32, 0.9);
+  margin-bottom: 1rem;
+}
+
+.entry-footer {
+  font-style: italic;
+  color: rgba(44, 36, 32, 0.6);
+  font-size: 0.9rem;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.journal-error,
+.journal-success {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 1.1rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.journal-error {
+  background: rgba(220, 38, 38, 0.1);
+  color: rgba(220, 38, 38, 0.9);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.journal-success {
+  background: rgba(16, 185, 129, 0.1);
+  color: rgba(16, 185, 129, 0.9);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.auth-resend-button {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 1rem;
+  background: transparent;
+  border: 1px solid rgba(44, 36, 32, 0.2);
+  color: rgba(44, 36, 32, 0.8);
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.auth-resend-button:hover {
+  border-color: rgba(44, 36, 32, 0.4);
+  color: rgba(44, 36, 32, 0.95);
+  background: rgba(44, 36, 32, 0.05);
 } 
