@@ -19,9 +19,15 @@ const cosmicWonders = [
 let currentWonder = 0;
 
 function updateWonder() {
-  document.getElementById('wonderTitle').textContent = cosmicWonders[currentWonder].title;
-  document.getElementById('wonderDescription').textContent = cosmicWonders[currentWonder].description;
-  document.querySelector('.wonderCard').style.background = cosmicWonders[currentWonder].gradient;
+  const wonderTitle = document.getElementById('wonderTitle')
+  const wonderDescription = document.getElementById('wonderDescription')
+  const wonderCard = document.querySelector('.wonderCard')
+  
+  if (wonderTitle && wonderDescription && wonderCard) {
+    wonderTitle.textContent = cosmicWonders[currentWonder].title;
+    wonderDescription.textContent = cosmicWonders[currentWonder].description;
+    wonderCard.style.background = cosmicWonders[currentWonder].gradient;
+  }
 }
 
 function nextWonder() {
