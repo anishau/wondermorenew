@@ -1,18 +1,18 @@
 const cosmicWonders = [
   {
-    title: "Quantum Entanglement",
-    description: "Where particles remain connected regardless of distance, dancing in perfect synchronicity across the cosmos.",
-    gradient: "linear-gradient(45deg, #00f2fe, #4facfe)"
+    title: "Light Study",
+    description: "Notice the light where you are right now. What shapes it? How does it interact with surfaces? Follow a shadow's edge and wonder about the astronomical dance that drew it.",
+    gradient: "linear-gradient(45deg, #f5f2eb, #eae6dd)"
   },
   {
-    title: "Dark Matter",
-    description: "The invisible force that binds galaxies together, making up 85% of the universe's mass.",
-    gradient: "linear-gradient(45deg, #434343, #000000)"
+    title: "Sound Meditation",
+    description: "Close your eyes. What's the farthest sound you can hear? The closest? Notice how each sound has a texture, a story of friction and vibration waiting to be wondered about.",
+    gradient: "linear-gradient(45deg, #eae6dd, #e5e1d8)"
   },
   {
-    title: "Nebulae",
-    description: "Cosmic nurseries where stars are born, painting the darkness with brilliant colors.",
-    gradient: "linear-gradient(45deg, #7303c0, #ec38bc, #fdeff9)"
+    title: "Material Questions",
+    description: "Choose any object near you. Where did its materials come from? Imagine the journey of its atoms from stars to this moment. What processes shaped it?",
+    gradient: "linear-gradient(45deg, #e5e1d8, #f5f2eb)"
   }
 ];
 
