@@ -814,4 +814,12 @@ body {
 /* Add transition for delete animation */
 .wonder-entry {
   transition: all 0.3s ease, opacity 0.3s ease;
+}
+
+.sign-out-button {
+  background: none;
+  border: none;
+  font-family: 'EB Garamond', serif;
+  cursor: pointer;
+  padding: 0.5rem 0;
 } 
