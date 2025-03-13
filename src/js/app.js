@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (session) {
       authLinks.innerHTML = `
+        <a href="/wonders" class="nav-link">Public Wonders</a>
         <a href="/journal" class="nav-link">Journal</a>
         <button class="nav-link sign-out-button" id="signOutLink">Sign Out</button>
       `
@@ -36,7 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('signOutLink').addEventListener('click', handleSignOut);
       }
     } else {
-      authLinks.innerHTML = `<a href="/auth" class="nav-link">Sign In</a>`
+      authLinks.innerHTML = `
+        <a href="/wonders" class="nav-link">Public Wonders</a>
+        <a href="/auth" class="nav-link">Sign In</a>
+      `
     }
   }
 

@@ -12,10 +12,20 @@ layout: base.njk
           placeholder="What filled you with wonder today? What questions arose? What remained beautifully unknowable?"
           required
         ></textarea>
-        <button type="submit">Record This Moment</button>
+        <div class="form-controls">
+          <label class="visibility-toggle">
+            <input type="checkbox" name="isPublic">
+            <span class="toggle-label">Share this wonder publicly</span>
+          </label>
+          <button type="submit">Record This Moment</button>
+        </div>
       </form>
 
       <div class="entries-container">
+        <div class="entries-nav">
+          <button class="tab-button active" data-tab="private">Private Journal</button>
+          <button class="tab-button" data-tab="public">Public Wonders</button>
+        </div>
         <div id="wonderEntries" class="wonder-entries">
           <!-- Entries will be populated here -->
         </div>

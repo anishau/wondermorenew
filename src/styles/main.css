@@ -822,4 +822,99 @@ body {
   font-family: 'EB Garamond', serif;
   cursor: pointer;
   padding: 0.5rem 0;
+}
+
+.form-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.visibility-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(44, 36, 32, 0.8);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.visibility-toggle input {
+  width: 1.2rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+
+.entries-nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(44, 36, 32, 0.1);
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  padding: 1rem 2rem;
+  font-family: 'EB Garamond', serif;
+  font-size: 1.2rem;
+  color: rgba(44, 36, 32, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.tab-button::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(44, 36, 32, 0.8);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.tab-button.active {
+  color: rgba(44, 36, 32, 0.9);
+}
+
+.tab-button.active::after {
+  transform: scaleX(1);
+}
+
+.wonder-entry {
+  position: relative;
+}
+
+.entry-visibility {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.9rem;
+  color: rgba(44, 36, 32, 0.5);
+  font-style: italic;
+}
+
+.wonders-container {
+  max-width: 800px;
+  margin: 6rem auto 0;
+  padding: 0 2rem 6rem;
+}
+
+.wonders-title {
+  font-size: 3rem;
+  text-align: center;
+  color: rgba(44, 36, 32, 0.9);
+  margin-bottom: 1rem;
+}
+
+.wonders-description {
+  text-align: center;
+  font-size: 1.2rem;
+  color: rgba(44, 36, 32, 0.7);
+  margin-bottom: 3rem;
+  font-style: italic;
 } 

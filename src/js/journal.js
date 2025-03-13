@@ -9,7 +9,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  async function loadEntries() {
+  let currentTab = 'private';
+
+  async function loadEntries(tab = 'private') {
+    currentTab = tab;
     const { data: entries, error } = await supabase
       .from('wonder_entries')
       .select('*')
@@ -20,16 +23,23 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
+    const filteredEntries = tab === 'private' 
+      ? entries.filter(entry => entry.user_id === session.user.id)
+      : entries.filter(entry => entry.is_public);
+
     const entriesContainer = document.getElementById('wonderEntries');
-    entriesContainer.innerHTML = entries.map(entry => `
+    entriesContainer.innerHTML = filteredEntries.map(entry => `
       <div class="wonder-entry" data-entry-id="${entry.id}">
         <div class="entry-content">${entry.content}</div>
+        ${entry.is_public ? '<div class="entry-visibility">Public</div>' : ''}
         <div class="entry-footer">
           <span class="entry-date">
             ${new Date(entry.created_at).toLocaleDateString()} at 
             ${new Date(entry.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </span>
-          <button class="delete-entry" aria-label="Delete entry">×</button>
+          ${entry.user_id === session.user.id ? 
+            `<button class="delete-entry" aria-label="Delete entry">×</button>` : 
+            ''}
         </div>
       </div>
     `).join('');
@@ -67,11 +77,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     event.preventDefault();
     const form = event.target;
     const content = form.wonderEntry.value;
+    const isPublic = form.isPublic.checked;
 
     const { error } = await supabase
       .from('wonder_entries')
       .insert([
-        { content, user_id: session.user.id }
+        { 
+          content, 
+          user_id: session.user.id,
+          is_public: isPublic
+        }
       ]);
 
     if (error) {
@@ -79,10 +94,19 @@ document.addEventListener('DOMContentLoaded', async () => {
       showError('Failed to save your moment of wonder');
     } else {
       form.reset();
-      loadEntries();
+      loadEntries(currentTab);
       showSuccess('Your moment of wonder has been recorded');
     }
   }
+
+  // Add tab switching functionality
+  document.querySelectorAll('.tab-button').forEach(button => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      loadEntries(button.dataset.tab);
+    });
+  });
 
   function showError(message) {
     const errorDiv = document.createElement('div');
@@ -104,6 +128,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const wonderForm = document.getElementById('wonderForm');
   if (wonderForm) {
     wonderForm.addEventListener('submit', handleWonderSubmit);
-    loadEntries();
+    loadEntries('private');
   }
 }); 
