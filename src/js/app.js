@@ -5,51 +5,57 @@ document.addEventListener('DOMContentLoaded', () => {
   async function handleSignOut(e) {
     e.preventDefault();
     try {
-      const { error } = await supabase.auth.signOut();
-      if (error) {
-        console.error('Error signing out:', error);
-      } else {
-        console.log('Successfully signed out');
-        // Force a full page reload instead of using window.location.href
-        window.location.replace('/');
-      }
+      // First clear any session data
+      await supabase.auth.signOut();
+      
+      // Clear any local storage data
+      localStorage.clear();
+      
+      // Force a complete page reload and clear cache
+      window.location.replace('/?t=' + new Date().getTime());
+      
     } catch (err) {
-      console.error('Unexpected error during sign out:', err);
+      console.error('Error during sign out:', err);
+      // If error, try a hard redirect
+      window.location.href = '/';
     }
   }
 
   async function updateNavigation() {
-    const { data: { session }, error } = await supabase.auth.getSession()
-    const authLinks = document.getElementById('authLinks')
-    
-    if (session) {
-      authLinks.innerHTML = `
-        <a href="/wonders" class="nav-link">Public Wonders</a>
-        <a href="/journal" class="nav-link">Journal</a>
-        <button class="nav-link sign-out-button" id="signOutLink">Sign Out</button>
-      `
-      // Add sign out handler
-      const signOutLink = document.getElementById('signOutLink');
-      if (signOutLink) {
-        // Remove any existing listeners
-        signOutLink.replaceWith(signOutLink.cloneNode(true));
-        // Add new listener
-        document.getElementById('signOutLink').addEventListener('click', handleSignOut);
+    try {
+      const { data: { session }, error } = await supabase.auth.getSession();
+      const authLinks = document.getElementById('authLinks');
+      
+      if (session) {
+        authLinks.innerHTML = `
+          <a href="/wonders" class="nav-link">Public Wonders</a>
+          <a href="/journal" class="nav-link">Journal</a>
+          <button class="nav-link sign-out-button" id="signOutLink">Sign Out</button>
+        `;
+        
+        // Add sign out handler
+        const signOutLink = document.getElementById('signOutLink');
+        if (signOutLink) {
+          signOutLink.removeEventListener('click', handleSignOut); // Remove any existing listeners
+          signOutLink.addEventListener('click', handleSignOut);
+        }
+      } else {
+        authLinks.innerHTML = `
+          <a href="/wonders" class="nav-link">Public Wonders</a>
+          <a href="/auth" class="nav-link">Sign In</a>
+        `;
       }
-    } else {
-      authLinks.innerHTML = `
-        <a href="/wonders" class="nav-link">Public Wonders</a>
-        <a href="/auth" class="nav-link">Sign In</a>
-      `
+    } catch (err) {
+      console.error('Error updating navigation:', err);
     }
   }
 
   // Update navigation when auth state changes
   supabase.auth.onAuthStateChange((event, session) => {
-    console.log('Auth state changed:', event, session);
+    console.log('Auth state changed:', event);
     if (event === 'SIGNED_OUT') {
-      // Force a full page reload
-      window.location.replace('/');
+      localStorage.clear();
+      window.location.replace('/?t=' + new Date().getTime());
     } else {
       updateNavigation();
     }
