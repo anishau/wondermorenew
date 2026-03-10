@@ -917,4 +917,61 @@ body {
   color: rgba(44, 36, 32, 0.7);
   margin-bottom: 3rem;
   font-style: italic;
+}
+
+.wonder-grid {
+  position: relative;
+  min-height: 80vh;
+  margin: 2rem 0;
+  overflow: visible;
+  padding: 2rem;
+}
+
+.wonder-entries {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.wonder-entry {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border: 1px solid rgba(44, 36, 32, 0.1);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  cursor: move;
+  user-select: none;
+  position: relative;
+  width: 100%;
+  box-shadow: 
+    0 4px 12px rgba(44, 36, 32, 0.03),
+    0 1px 3px rgba(44, 36, 32, 0.02);
+}
+
+.wonder-entry:hover {
+  box-shadow: 
+    0 8px 24px rgba(44, 36, 32, 0.06),
+    0 2px 6px rgba(44, 36, 32, 0.04);
+  transform: translateY(-2px);
+  z-index: 2;
+}
+
+.wonder-entry.dragging {
+  opacity: 0.9;
+  transform: scale(1.02);
+  z-index: 1000;
+}
+
+@media (max-width: 1200px) {
+  .wonder-entries {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .wonder-entries {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
 } 
