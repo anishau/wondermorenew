@@ -64,6 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial navigation update
   updateNavigation();
 
+  // If we landed on /auth with tokens from email confirmation, redirect to journal
+  (async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session && window.location.pathname.includes('/auth') && window.location.hash) {
+      window.location.replace('/journal');
+    }
+  })();
+
   // Auth functions
   async function handleLogin(event) {
     event.preventDefault()
